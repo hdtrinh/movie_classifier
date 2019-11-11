@@ -103,7 +103,7 @@ self.desc_tokenizer.fit_on_texts(df.overview)
 vocabulary_size = len(self.desc_tokenizer.word_index) + 1
 X_desc = self.desc_tokenizer.texts_to_sequences(df.overview)
 
-# Tokenize the description
+# Tokenize the title
 self.title_tokenizer.fit_on_texts(df.title)
 X_title = self.title_tokenizer.texts_to_sequences(df.title)
 
@@ -117,11 +117,14 @@ X = np.hstack((X_title, X_desc))
 
 ### Model 
 
-- Define a text-classification model using Bidirectional LSTM  [1](https://arxiv.org/pdf/1611.06639.pdf)
+- Define a text-classification model using Bidirectional LSTM  [[1](https://arxiv.org/pdf/1611.06639.pdf)]
 
 ```
 code
 ```
+
+## Results
+
 
 ## Authors
 
@@ -134,7 +137,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 * MovieLens Database
-* Bidirectional LSTM [1](https://arxiv.org/pdf/1611.06639.pdf) 
+* Bidirectional LSTM [[1](https://arxiv.org/pdf/1611.06639.pdf)]
 
 
 
