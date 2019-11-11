@@ -44,8 +44,8 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
 
 ### Prerequisites
 
-- Download the IMDB movies metadata from here [link](https://www.kaggle.com/rounakbanik/the-movies-dataset/version/7#movies_metadata.csv)
-- Put it in movie_classifier/source folder 
+- Download the MovieLens movies_metadata.csv from here [link](https://www.kaggle.com/rounakbanik/the-movies-dataset/version/7#movies_metadata.csv)
+- Put movies_metadata.csv in movie_classifier/source folder 
 
 ### Preprocess
 
@@ -70,6 +70,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* IMDB Movie Database
+* MovieLens Database
 
 
