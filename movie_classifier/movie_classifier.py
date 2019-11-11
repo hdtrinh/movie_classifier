@@ -1,16 +1,15 @@
+#!/usr/bin/env python
 
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 import sys
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 stderr = sys.stderr
 sys.stderr = open(os.devnull, 'w')
 import keras
 sys.stderr = stderr
 
 import argparse 
-import sys
-
-
 import pandas as pd
 import ast
 import pickle
@@ -44,25 +43,72 @@ def main():
         predict_genre(title,desc)
 
 
-def predict_genre(title,desc):
-    model = load_model('movie_classifier/model/model.h5')
-    with open('movie_classifier/model/title_tokenizer.pkl', "rb") as output_file:
+def load_models(model_path = 'movie_classifier/model/'):
+    
+    this_dir, this_filename = os.path.split(__file__)
+    #this_dir = os.path.dirname(os.path.abspath(__file__))
+
+    model_path = os.path.join(this_dir, "model")
+    
+    print('model_dir',this_dir)
+    
+    model = load_model(os.path.join(model_path, "model.h5"))
+    
+    with open(os.path.join(model_path,'title_tokenizer.pkl'), "rb") as output_file:
+         model_params = pickle.load(output_file)
+            
+    with open(os.path.join(model_path, 'title_tokenizer.pkl'), "rb") as output_file:
          title_tokenizer = pickle.load(output_file)
-    with open('movie_classifier/model/desc_tokenizer.pkl', "rb") as output_file:
+    with open(os.path.join(model_path, 'desc_tokenizer.pkl'), "rb") as output_file:
          desc_tokenizer = pickle.load(output_file)
-    with open('movie_classifier/model/encoder.pkl', "rb") as output_file:
-         enc = pickle.load(output_file)
+    with open(os.path.join(model_path, 'encoder.pkl'), "rb") as output_file:
+         encoder = pickle.load(output_file)
+    
+    return model, model_params, encoder, title_tokenizer, desc_tokenizer
 
-    max_len_desc = 300
-    max_len_title = 50
-
-    desc_tokens = desc_tokenizer.texts_to_sequences([desc])
-    desc_padded = pad_sequences(desc_tokens, padding='post', maxlen = max_len_desc)
-    title_tokens = title_tokenizer.texts_to_sequences([title])
-    title_padded = pad_sequences(title_tokens, padding='post', maxlen = max_len_title)
+def generate_input(title,desc,t_tokenizer, d_tokenizer):
+    
+    
+    m, params, e, t_tokenizer, d_tokenizer = load_models()
+    
+    #maxlen_desc = params['maxlen_desc']
+    #maxlen_title = params['maxlen_title']
+    
+    maxlen_desc = 300
+    maxlen_title = 50
+    
+    desc_tokens = d_tokenizer.texts_to_sequences([desc])
+    desc_padded = pad_sequences(desc_tokens, padding='post', maxlen = maxlen_desc)
+    title_tokens = t_tokenizer.texts_to_sequences([title])
+    title_padded = pad_sequences(title_tokens, padding='post', maxlen = maxlen_title)
+    
     model_input = np.hstack((title_padded,desc_padded))
+    
+    return model, model_input, e
+    
+    
+def predict_genre(title,desc):
+    
+    ######## LOAD MODELS ##########
+    model, params, encoder, t_tokenizer, d_tokenizer = load_models()
+    
+    ######## PREPARE THE MODEL INPUT ##########
+    
+    #maxlen_desc = params['maxlen_desc']
+    #maxlen_title = params['maxlen_title']
+    
+    maxlen_desc = 300
+    maxlen_title = 50
+    
+    desc_tokens = d_tokenizer.texts_to_sequences([desc])
+    desc_padded = pad_sequences(desc_tokens, padding='post', maxlen = maxlen_desc)
+    title_tokens = t_tokenizer.texts_to_sequences([title])
+    title_padded = pad_sequences(title_tokens, padding='post', maxlen = maxlen_title)
+    model_input = np.hstack((title_padded,desc_padded))
+    
+    ######## PREDICT THE GENRE ##########
     pred = model.predict(model_input)
-    genre = enc.inverse_transform(pred)[0]
+    genre = encoder.inverse_transform(pred)[0]
 
     response = {
 		'title':title,
@@ -71,6 +117,7 @@ def predict_genre(title,desc):
 		}
 
     print(json.dumps(response))
+    
 
 if __name__ == '__main__':
     main()
