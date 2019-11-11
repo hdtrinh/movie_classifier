@@ -25,7 +25,7 @@ class encoder():
         vocabulary_size = len(self.desc_tokenizer.word_index) + 1
         X_desc = self.desc_tokenizer.texts_to_sequences(df.overview)
         
-        # Tokenize the description
+        # Tokenize the title
         self.title_tokenizer.fit_on_texts(df.title)
         X_title = self.title_tokenizer.texts_to_sequences(df.title)
         
