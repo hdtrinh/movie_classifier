@@ -14,7 +14,6 @@ git clone https://github.com/hdtrinh/movie_classifier.git
 Use the following to install the requirements and the app
 
 ```
-pip3 install -r movie_classifier/requirements.txt
 pip3 install movie_classifier/.
 ```
 
