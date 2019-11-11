@@ -5,9 +5,10 @@ import pandas as pd
 from ast import literal_eval
 
 class preprocessor():
-    def __init__(self):
+    def __init__(self,genres=['Drama','Comedy','Documentary','Science Fiction','Romance']):
+        nltk.download('stopwords')
         self.stop_words = set(stopwords.words('english'))
-        self.genres = ['Drama','Comedy','Documentary','Science Fiction','Romance']
+        self.genres = genres
 
     def clean_text(self,text):    
         text = text.split()

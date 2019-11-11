@@ -4,9 +4,9 @@ from sklearn.preprocessing import LabelBinarizer
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 
-
 class encoder():
-    def __init__(self, model_path = '../model/',max_words = 20000,maxlen_desc = 300,maxlen_title = 50):
+    def __init__(self, model_path = '../model/', max_words = 20000,
+                    maxlen_desc = 300, maxlen_title = 50):
         self.model_path = model_path
         self.max_words = max_words
         self.maxlen_title = maxlen_title
@@ -39,11 +39,11 @@ class encoder():
         return X,y
     
     def save(self):
-        with open(self.model_path + 'title_tokenizer_bk.pkl', 'wb') as outfile:
+        with open(self.model_path + 'title_tokenizer.pkl', 'wb') as outfile:
             pickle.dump(self.desc_tokenizer, outfile,  protocol=2)
     
-        with open(self.model_path + 'desc_tokenizer_bk.pkl', 'wb') as outfile:
+        with open(self.model_path + 'desc_tokenizer.pkl', 'wb') as outfile:
             pickle.dump(self.title_tokenizer, outfile,  protocol=2)
     
-        with open(self.model_path + 'encoder_bk.pkl', 'wb') as outfile:
+        with open(self.model_path + 'encoder.pkl', 'wb') as outfile:
             pickle.dump(self.encoder, outfile, protocol=2)
