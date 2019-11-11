@@ -5,15 +5,12 @@ A simple command-line application: given a title and a short movie description i
 
 ## Install
 
-Clone the repository
+To test the app I suggest to create a virtual environment. 
+
+Clone the repository and install the app with the following commands
 
 ```
 git clone https://github.com/hdtrinh/movie_classifier.git
-```
-
-Use the following to install the requirements and the app
-
-```
 pip3 install movie_classifier/.
 ```
 
@@ -40,7 +37,8 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
 
 ### Output
 
-The model will return one of the following genre: 'Drama','Comedy','Documentary','Science Fiction','Romance'
+- The model will return one of the following genre:
+- 'Drama','Comedy','Documentary','Science Fiction','Romance'
 
 ```
 { "title": "Othello", 
@@ -50,12 +48,15 @@ The model will return one of the following genre: 'Drama','Comedy','Documentary'
 
 ## Model Training
 
+- To train the model move to source folder.
+- The model uses keras and tensorflow as backend. Pandas, sklearn and numpy are used for preprocessing purposes. 
+
 ### Prerequisites
 
 - Download the MovieLens movies_metadata.csv from here [link](https://www.kaggle.com/rounakbanik/the-movies-dataset/version/7#movies_metadata.csv)
 - Put movies_metadata.csv in movie_classifier/source folder 
 
-### Install Training
+### Install Training Requirements
 
 Move to the source folder. Then install requirements and run the training as follows:
 ```
@@ -82,7 +83,7 @@ df = df[pd.notnull(df.genres)]
 ```
 
 ### Clean the text
-- Use nltk stopwords
+- Download and use stopwords from Natural Language Toolkit nltk
 - Lower-case the text
 - Remove punctuation and stopwords
 
@@ -124,7 +125,9 @@ code
 ```
 
 ## Results
-
+- Using 6 genres ('Drama', '', '',) we get an accuracy of 63%
+- No large improvement using LSTM instead of Dense layer
+- Accuracy can be improved with preprocessing (embedding with pre-trained models, e.g. GloVe, BERT) and with grid CV parameters search. 
 
 ## Authors
 
