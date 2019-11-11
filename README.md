@@ -1,6 +1,6 @@
 # Movie Genre Classifier
 
-A simple command-line application: given a title and a short movie description it should return an appropriate genre. 
+A simple command-line application: given a title and a short movie description it returns an appropriate genre. 
 
 
 ## Install
@@ -20,19 +20,19 @@ pip3 install movie_classifier/.
 
 ## Usage
 
-## Input Arguments
+### Input Arguments
 
 ```
 movie_classifier --title <title> --description <description>
 ```
 
-##  Example
+###  Example
 
 ```
 movie_classifier --title "Othello" --description "The evil Iago pretends to be friend of Othello in order to manipulate him to serve his own end in the film version of this Shakespeare classic.
 ```
 
-## Output
+### Output
 
 ```
 { "title": "Othello", 
@@ -53,7 +53,6 @@ Add additional notes
 ### Model 
 
 Add additional notes
-
 
 
 ## Authors
