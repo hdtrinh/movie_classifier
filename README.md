@@ -4,33 +4,20 @@ Movie genre classification from title and description
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+### Installing
 
-## Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+Use the following to install the requirements and the app
 
 ```
-Give the example
+pip3 install -r requirements.txt
+pip3 install .
 ```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Usage
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+```
+movie_classifier --title "Othello" --description "The evil Iago pretends to be friend of Othello in order to manipulate him to serve his own end in the film version of this Shakespeare classic."
+```
 
 
 
