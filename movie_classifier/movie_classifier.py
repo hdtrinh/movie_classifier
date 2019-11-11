@@ -43,15 +43,10 @@ def main():
         predict_genre(title,desc)
 
 
-def load_models(model_path = 'movie_classifier/model/'):
+def load_models(model_path = os.path.dirname(os.path.abspath(__file__))):
     
-    this_dir, this_filename = os.path.split(__file__)
-    #this_dir = os.path.dirname(os.path.abspath(__file__))
-
-    model_path = os.path.join(this_dir, "model")
-    
-    print('model_dir',this_dir)
-    
+    model_path = os.path.join(model_path, "model")
+        
     model = load_model(os.path.join(model_path, "model.h5"))
     
     with open(os.path.join(model_path,'title_tokenizer.pkl'), "rb") as output_file:

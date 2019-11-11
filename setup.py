@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup( 
     name='movie_classifier-hdtrinh', 
-    version='0.0.8', 
+    version='0.0.9', 
     author='hdtrinh', 
     author_email='trinh.hoangduy@gmail.com', 
     description='Movie Genre Classification from Description', 
@@ -16,6 +16,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/hdtrinh/movie_classifier",
     packages=setuptools.find_packages(), 
+    include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
