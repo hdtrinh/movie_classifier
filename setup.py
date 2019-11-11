@@ -22,13 +22,17 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=2.7',
+    python_requires='>=3',
     entry_points={ 
         'console_scripts': [ 
             'movie_classifier = movie_classifier.movie_classifier:main' 
         ] 
     },
-    install_requires = ['nltk']
+    install_requires = [
+                        'keras==2.1.5',
+                        'tensorflow',
+                        
+                           ]
 )
 
 
