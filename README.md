@@ -25,15 +25,15 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
 
 ### Preprocess
 
-Add additional notes about how to deploy this on a live system
+Add additional notes
 
 ### Encode
 
-Add additional notes about how to deploy this on a live system
+Add additional notes
 
 ### Model 
 
-Add additional notes about how to deploy this on a live system
+Add additional notes
 
 
 
@@ -47,7 +47,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* IMDB Movie Database
+
 
