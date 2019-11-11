@@ -26,8 +26,8 @@ setuptools.setup(
         ] 
     },
     install_requires = [
-                        'keras==2.1.5',
-                        'tensorflow==1.14.0',
+                        'keras<=2.1.5',
+                        'tensorflow<=1.14.0',
                         'sklearn'          
                            ]
 )
