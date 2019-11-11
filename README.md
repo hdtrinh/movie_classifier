@@ -1,25 +1,44 @@
 # Movie Genre Classifier
 
-Movie genre classification from title and description
+A simple command-line application: given a title and a short movie description it should return an appropriate genre. 
 
-## Getting Started
 
-### Installing
+## Install
+
+Clone the repository
+
+```
+git clone https://github.com/hdtrinh/movie_classifier.git
+```
 
 Use the following to install the requirements and the app
 
 ```
-pip3 install -r requirements.txt
-pip3 install .
+pip3 install -r movie_classifier/requirements.txt
+pip3 install movie_classifier/.
 ```
 
 ## Usage
 
+## Input Arguments
+
 ```
-movie_classifier --title "Othello" --description "The evil Iago pretends to be friend of Othello in order to manipulate him to serve his own end in the film version of this Shakespeare classic."
+movie_classifier --title <title> --description <description>
 ```
 
+##  Example
 
+```
+movie_classifier --title "Othello" --description "The evil Iago pretends to be friend of Othello in order to manipulate him to serve his own end in the film version of this Shakespeare classic.
+```
+
+## Output
+
+```
+{ "title": "Othello", 
+  "description": "The evil Iago pretends to be friend of Othello in order to manipulate him to serve his own end in the film version of this Shakespeare classic.", 
+  "genre": "Drama"}
+```
 
 ## Model Training
 
