@@ -5,9 +5,9 @@ A simple command-line application: given a title and a short movie description i
 
 ## Install
 
-To test the app I suggest to create a virtual environment. 
+- To test the app I suggest to create a virtual environment. 
 
-Clone the repository and install the app with the following commands
+- Clone the repository and install the app with the following commands
 
 ```
 git clone https://github.com/hdtrinh/movie_classifier.git
@@ -38,7 +38,7 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
 ### Output
 
 - The model will return one of the following genre:
-- 'Drama','Comedy','Documentary','Science Fiction','Romance'
+- 'Drama', 'Comedy', 'Documentary', 'Science Fiction', 'Romance'
 
 ```
 { "title": "Othello", 
@@ -50,6 +50,8 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
 
 - To train the model move to source folder.
 - The model uses keras and tensorflow as backend. Pandas, sklearn and numpy are used for preprocessing purposes. 
+- The model needs title + description as input and return the genre as output. 
+
 
 ### Prerequisites
 
@@ -58,21 +60,27 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
 
 ### Install Training Requirements
 
-Move to the source folder. Then install requirements and run the training as follows:
+- Move to the source folder. Then install requirements and run the training as follows. 
+- Create a virtual environment if you prefer
+
 ```
 pip3 install -r requirements-train.txt
 python3 train.py
 ```
 
 ## Training Steps
+The training requires few steps defined by the following files:
+- Preprocess and clean the text: preprocess.py
+- One-hot encode the output and tokenize the text: encode.py
+- Define the classifier model: model.py
 
 ### Preprocess
 
 - Load the dataset in a pandas dataframe
 - Use the columns title, genres, overview (description)
 - Check that our mandatory fields are not empty
-- Each movie can be associated to more than one genre. We choose just one genre output as simple case.
-- To extend to many-genres output we can perform a multi-label classification (future works)
+- Each movie can be associated to more than one genre. We perform only one genre output as simple case.
+- To extend to many-genres output we should implement a multi-label classification (future works)
 
 ```
 df = pd.read_csv('movies_metadata.csv')
@@ -87,7 +95,6 @@ df = df[pd.notnull(df.genres)]
 - Lower-case the text
 - Remove punctuation and stopwords
 
-
 ### Encode
 
 - One-hot Encoding of the labels (genres)
@@ -101,7 +108,6 @@ y = self.encoder.fit_transform(df.genre)
 
 # Tokenize the description
 self.desc_tokenizer.fit_on_texts(df.overview)
-vocabulary_size = len(self.desc_tokenizer.word_index) + 1
 X_desc = self.desc_tokenizer.texts_to_sequences(df.overview)
 
 # Tokenize the title
