@@ -2,9 +2,6 @@ import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-    
-#with open('requirements.txt') as f:
-#    requirements = f.read().splitlines()
 
 setuptools.setup( 
     name='movie_classifier-hdtrinh', 
@@ -30,8 +27,8 @@ setuptools.setup(
     },
     install_requires = [
                         'keras==2.1.5',
-                        'tensorflow',
-                        
+                        'tensorflow==1.14.0',
+                        'sklearn'          
                            ]
 )
 
