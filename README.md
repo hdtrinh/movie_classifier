@@ -37,7 +37,7 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
 
 ### Output
 
-- The model will return one of the following genre:
+- The model will return one of the six following genre:
 - 'Drama', 'Comedy', 'Documentary', 'Science Fiction', 'Romance'
 
 ```
@@ -50,7 +50,7 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
 
 - To train the model move to source folder.
 - The model uses keras and tensorflow as backend. Pandas, sklearn and numpy are used for preprocessing purposes. 
-- The model needs title + description as input and return the genre as output. 
+- The model gets title + description as input and return the genre as output. 
 
 
 ### Prerequisites
@@ -61,8 +61,6 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
 ### Install Training Requirements
 
 - Move to the source folder. Then install requirements and run the training as follows. 
-- Create a virtual environment if you prefer
-
 ```
 pip3 install -r requirements-train.txt
 python3 train.py
@@ -76,11 +74,11 @@ The training requires few steps defined by the following files:
 
 ### Preprocess
 
-- Load the dataset in a pandas dataframe
+- Load the dataset into a pandas dataframe
 - Use the columns title, genres, overview (description)
-- Check that our mandatory fields are not empty
+- Check that the mandatory fields are not empty
 - Each movie can be associated to more than one genre. We perform only one genre output as simple case.
-- To extend to many-genres output we should implement a multi-label classification (future works)
+- To extend to many-genres output we can implement a multi-label classification (future works)
 
 ```
 df = pd.read_csv('movies_metadata.csv')
@@ -98,7 +96,7 @@ df = df[pd.notnull(df.genres)]
 ### Encode
 
 - One-hot Encoding of the labels (genres)
-- Tokenizing separately title and description and get sequences
+- Tokenize separately title and description and get sequences
 - Pad title and description to fixed-length sequences
 - Stack together title + description
 
@@ -131,9 +129,9 @@ code
 ```
 
 ## Results
-- Using 6 genres ('Drama', '', '',) we get an accuracy of 63%
-- No large improvement using LSTM instead of Dense layer
-- Accuracy can be improved with preprocessing (embedding with pre-trained models, e.g. GloVe, BERT) and with grid CV parameters search. 
+- Using 6 genres ('Drama', 'Comedy', 'Documentary', 'Science Fiction', 'Romance') we get an accuracy of 63%
+- No huge improvement using LSTM instead of Dense layer
+- Accuracy can be improved with preprocessing (embedding with pre-trained models, e.g. GloVe, BERT) and with model tuning (e.g. using grid CV parameters search).
 
 ## Authors
 
