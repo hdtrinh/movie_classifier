@@ -4,9 +4,9 @@ import sys
 # redirect stderr and remove warnings including Using Tensorflow as backend
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 stderr = sys.stderr
-sys.stderr = open('err.txt', 'w')
+sys.stderr = open(os.devnull, 'w')
 import keras
-
+sys.stderr = stderr
 import argparse 
 import pickle
 import numpy as np
@@ -14,8 +14,6 @@ import json
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
-
-
 
 def main():
     # Parse input arguments and set mandatory title and description
