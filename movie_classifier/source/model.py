@@ -6,6 +6,8 @@ import pickle
 
 class model_classifier():
     def __init__(self, model_path = '../model/'):
+    
+        # init model parameters
         self.model_path = model_path
         self.vocabulary_size = 0
         self.embedding_dim = 0
@@ -18,8 +20,9 @@ class model_classifier():
         
         
     def load_params(self, params_dict):
+        
+        # load parameters from dict
         self.params = params_dict
-      
         self.vocabulary_size = params_dict['VOCABULARY_SIZE']
         self.embedding_dim = params_dict['EMBEDDING_DIM']
         self.input_len = params_dict['INPUT_LEN']
@@ -32,7 +35,9 @@ class model_classifier():
     def define_model(self, params_dict):
         
         params = self.load_params(params_dict)
-        '''
+        
+        # Simple Dense Layer Model
+        '''       
         model = Sequential()
         model.add(Embedding(input_dim=self.vocabulary_size, 
                             output_dim=self.embedding_dim, 
@@ -42,11 +47,13 @@ class model_classifier():
         model.add(Dropout(0.5))
         model.add(Dense(self.num_classes, activation='softmax'))
         '''             
+        
+        # Model with Bidirectional LSTM Layer
         model = Sequential()
         model.add(Embedding(input_dim=self.vocabulary_size, 
                                output_dim=self.embedding_dim, 
                                input_length=self.input_len))
-        model.add(Bidirectional(LSTM(100, return_sequences=True)))
+        model.add(Bidirectional(LSTM(self.num_dense_1, return_sequences=True)))
         model.add(GlobalMaxPool1D())
         model.add(Dense(self.num_classes, activation='softmax'))
         

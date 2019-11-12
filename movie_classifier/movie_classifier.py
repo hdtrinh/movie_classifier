@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 import os
 import sys
-# remove all std output including Using Tensorflow as backend
+# redirect stderr and remove warnings including Using Tensorflow as backend
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 stderr = sys.stderr
-sys.stderr = open(os.devnull, 'w')
+sys.stderr = open('err.txt', 'w')
 import keras
-sys.stderr = stderr
 
 import argparse 
 import pickle
@@ -16,11 +15,7 @@ from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import load_model
 
-# remove warnings
-def warn(*args, **kwargs):
-    pass
-import warnings
-warnings.warn = warn
+
 
 def main():
     # Parse input arguments and set mandatory title and description

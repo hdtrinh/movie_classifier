@@ -39,6 +39,8 @@ class encoder():
         return X,y
     
     def save(self):
+        
+        # Save tokenizers and encoder models
         with open(self.model_path + 'title_tokenizer.pkl', 'wb') as outfile:
             pickle.dump(self.desc_tokenizer, outfile,  protocol=2)
     

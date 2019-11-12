@@ -19,7 +19,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3',
+    python_requires='>=3,<3.8.0',
     entry_points={ 
         'console_scripts': [ 
             'movie_classifier = movie_classifier.movie_classifier:main' 
@@ -28,7 +28,8 @@ setuptools.setup(
     install_requires = [
                         'keras<=2.1.5',
                         'tensorflow<=1.14.0',
-                        'sklearn'          
+                        'sklearn',
+                        'protobuf<=3.6.0'
                            ]
 )
 
