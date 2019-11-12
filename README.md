@@ -123,9 +123,21 @@ X = np.hstack((X_title, X_desc))
 ### Model 
 
 - Define a text-classification model using Bidirectional LSTM  [[1](https://arxiv.org/pdf/1611.06639.pdf)]
-
+- Use 1-D Global Max Pooling to gather information from temporal sequences
+- Use Dense with softmax activation function to output probability scores
+- The model is compiled using adam optimization and categorical cross-entropy loss
 ```
-code
+model = Sequential()
+model.add(Embedding(input_dim=self.vocabulary_size, 
+                       output_dim=self.embedding_dim, 
+                       input_length=self.input_len))
+model.add(Bidirectional(LSTM(self.num_dense_1, return_sequences=True)))
+model.add(GlobalMaxPool1D())
+model.add(Dense(self.num_classes, activation='softmax'))
+
+model.compile(optimizer='adam',
+          loss='categorical_crossentropy',
+          metrics=['accuracy'])
 ```
 
 ## Results
