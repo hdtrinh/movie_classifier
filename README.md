@@ -13,7 +13,6 @@ A simple command-line application: given a title and a short movie description i
 git clone https://github.com/hdtrinh/movie_classifier.git
 pip3 install movie_classifier/.
 ```
-
 ## Usage
 
 ### Input Arguments
@@ -45,6 +44,7 @@ movie_classifier --title "Othello" --description "The evil Iago pretends to be f
   "description": "The evil Iago pretends to be friend of Othello in order to manipulate him to serve his own end in the film version of this Shakespeare classic.", 
   "genre": "Drama"}
 ```
+- In case of error please check err.txt (stderr redirected)
 
 ## Model Training
 
