@@ -1,6 +1,9 @@
 import os
+import tensorflow as tf
+
+# remove tf warnings
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
-# remove warnings
 def warn(*args, **kwargs):
     pass
 import warnings
